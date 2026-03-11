@@ -26,6 +26,8 @@ That means:
 
 The raw export is evidence, not the package.
 
+When building a new package, the agent can use the annotated templates in `template/` as the target format. Each template includes HTML-comment guidance that explains what belongs in each section and what to avoid.
+
 ## Step 1: Clarify User Intent First
 
 Before touching the logs, the agent should ask what the user actually wants.
@@ -170,6 +172,8 @@ Then the agent should propose the smallest useful patch:
 - diary rewrite
 - user-profile adjustment
 - startup-order adjustment
+
+When helping with month transitions, the agent should follow the process in `template/month-transition-guide.md`. The agent should propose the Bridge content and carry-forward decisions, then let the user review before finalizing.
 
 ## A Good Agent Is Not Just An Extractor
 

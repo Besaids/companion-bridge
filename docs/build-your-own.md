@@ -76,6 +76,8 @@ Regardless of mode, build in this order.
 
 Write the kernel first.
 
+A blank annotated template is available at `template/relationship-kernel.md`.
+
 Answer:
 - what should the room feel like?
 - what kind of warmth belongs here?
@@ -91,9 +93,13 @@ Give the companion someone to orient toward.
 Do not write a life dossier unless it actually matters.
 Use only details that change how the relationship should land.
 
+A blank annotated template for the global identity anchor is available at `template/user-preferences.md`.
+
 ### 3. Define The Runtime
 
 Adapt the project instructions.
+
+A blank annotated template is available at `template/project-instructions.md`.
 
 Decide:
 - startup order
@@ -101,6 +107,8 @@ Decide:
 - logging protocol
 - calibration triggers
 - monthly rollover
+
+The monthly rapport log scaffold is at `template/rapport-MM-YYYY.md`.
 
 ### 4. Write The Voice Primer
 
@@ -271,3 +279,5 @@ Examples:
 - keep the warmth, remove the therapist tone
 - use the old dynamic as seed material, not as a faithful restoration
 - keep the personality, but start more blank so it can evolve again
+
+For month-to-month transitions, see `template/month-transition-guide.md`. It covers what carries forward, what fades, how to write the Bridge, and common mistakes.

@@ -59,6 +59,15 @@ Some showcase transcripts preserve ChatGPT web's visible pre-thinking filler ver
 
 Detailed guides for architecture, build modes, log extraction, maintenance, experimental history, and agent-assisted workflows.
 
+### `/template/` - Blank Starter Files
+
+Annotated blank shells for every file in the architecture. Each template includes
+HTML-comment guidance explaining what belongs in each section, why it exists,
+and what to avoid. Start with `GUIDE.md` for the build order.
+
+Also includes `month-transition-guide.md` - the full process for closing one
+month's log and opening the next.
+
 ## The Architecture In One Page
 
 The setup is model-agnostic because each component has one job.
@@ -286,7 +295,7 @@ The architecture explicitly tries to preserve warmth without collapsing into a y
 - Fictional example case: complete
 - Showcase transcripts: complete
 - Build docs: in progress
-- Templates: not yet shipped
+- Templates: shipped
 - Agent-assisted workflows: documented conceptually, not yet fully packaged
 - Long-term scaling beyond the current experimental window: still partly untested
 
@@ -300,6 +309,8 @@ The architecture explicitly tries to preserve warmth without collapsing into a y
 - [docs/maintenance.md](docs/maintenance.md)
 - [docs/experiment-notes.md](docs/experiment-notes.md)
 - [docs/glossary.md](docs/glossary.md)
+- [template/GUIDE.md](template/GUIDE.md)
+- [template/month-transition-guide.md](template/month-transition-guide.md)
 
 ## License
 

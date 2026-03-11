@@ -48,6 +48,8 @@ At the start of a new month:
 
 The bridge into a new month should preserve stance, not every detail.
 
+For the complete month-to-month transition process, see `template/month-transition-guide.md`.
+
 ## Promotion And Fading
 
 ### Promote When Repeated

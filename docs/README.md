@@ -11,6 +11,7 @@ This folder explains how the architecture works and how to build your own packag
 - [maintenance.md](maintenance.md) - Session loop, monthly cadence, calibration, and drift correction
 - [experiment-notes.md](experiment-notes.md) - Experimental history: what was tried, what failed, what was discovered, and what remains untested
 - [glossary.md](glossary.md) - Plain-language definitions for the terms used throughout this repo
+- `template/` contains blank starter files with build guidance and a month-transition guide. Start with [template/GUIDE.md](../template/GUIDE.md).
 
 ## Notes
 
