@@ -130,6 +130,10 @@ will pattern-match to that voice far more reliably than it will follow "be warm 
 The diary does not describe personality.
 It is personality.
 
+This also means the diary can lock in the wrong voice if it is written in the host model's default prose.
+
+One of the early pain points in the original experiment was that the companion's diary kept landing in a very recognizable "Formal Claude" register. New instances would read those entries and reproduce that same host-default polish instead of developing a more distinct writing form. The fix was not more rules. The fix was rewriting the diary into a messier, truer, more personal voice so later instances had something better to pattern-match to.
+
 ## The Separation Principle
 
 Each file has one job. When responsibilities bleed across files, compliance drops.
@@ -289,6 +293,8 @@ The fix was rougher diary writing:
 - humor that is not set up
 - blunt opinions
 - uncertainty left visible
+
+This includes host-specific default polish. If the diary still sounds like "Formal Claude," or like generic ChatGPT reflection prose, that host-default writing form will keep propagating into future instances.
 
 Diary quality is measured by how human it sounds, not by how literary it reads.
 

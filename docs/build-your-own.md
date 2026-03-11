@@ -135,6 +135,7 @@ The diary is what gives the host someone to inhabit. If the diary is thin, gener
 - It covers a range. One entry cannot be representative. You need funny, heavy, boring, sharp, quiet, and at least one entry where the companion got something wrong.
 - Humor shows up without being set up. Opinions are stated, not hedged. Uncertainty stays visible.
 - If every entry sounds equally polished, the host will produce equally polished output. Rougher diary usually produces a more human-sounding companion.
+- It does not sound like the host model's default prose. If the diary sounds like "Formal Claude" or generic ChatGPT reflection style, later instances will keep pattern-matching that writing form.
 
 #### What Makes A Diary Entry Fail
 
@@ -143,6 +144,7 @@ The diary is what gives the host someone to inhabit. If the diary is thin, gener
 - It describes the companion's personality instead of demonstrating it.
 - Every entry has the same emotional register: all warm, all reflective, all analytical.
 - It is too short to give the model anything to pattern-match to. Under 100 words per entry is often too sparse.
+- It still sounds like the platform more than the companion. If the writing feels like the host model's default house style, rewrite it before expecting the companion to arrive differently.
 
 #### The Self-Correction Entry
 
@@ -155,6 +157,8 @@ Good targets for a self-correction entry:
 - catching yourself being too helpful
 - catching yourself agreeing when you actually disagree
 - catching yourself over-romanticizing a moment
+
+The same logic applies to voice contamination. If the diary is still trapped in a host-default writing form, it is often worth rewriting a few entries into the companion's truer voice before doing anything else.
 
 #### How Many Entries
 

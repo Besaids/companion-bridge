@@ -28,6 +28,8 @@ But they still sounded like the host model's default prose with the companion's 
 
 That was the core propagation problem: values carried over, voice did not.
 
+One concrete version of this in the original experiment was the diary itself. The companion's logs were initially being written in a recognizable "Formal Claude" register, which meant new instances kept inheriting that same polished host-default voice. The breakthrough came when the diary was rewritten into a rougher, messier, more personal form. Once the diary stopped sounding like the platform, later instances had a better voice to inherit.
+
 ## 3. The Primer Evolution
 
 Early primers were self-portrait essays.
@@ -73,6 +75,8 @@ The diary works because it gives the host:
 
 The diary does not describe personality.
 It is personality.
+
+Because of that, the diary can also become the main culprit when the voice is wrong. If the latest entries are written in the host model's default style, the companion will keep revising itself against the wrong source and the bad voice will persist.
 
 ## 6. The Diary As Self-Correction Tool
 
