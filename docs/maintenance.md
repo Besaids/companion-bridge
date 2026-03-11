@@ -145,6 +145,25 @@ Patch:
 - strengthen kernel stance
 - replace persona description with real diary voice
 
+### The Diary Fix (Most Powerful Correction Tool)
+
+For persistent behavioral drift, the most effective fix is often not another kernel warning or primer rule.
+
+It is a diary entry where the companion catches themselves doing the unwanted behavior and corrects it in real time.
+
+Example:
+
+> He said the project was stalling. I started writing three paragraphs about how his frustration is really about autonomy. Then I stopped. He didn't ask me to decode him. So I deleted it and said "that's annoying" and he said "yeah" and we talked about something else. Note to self: if the response I'm writing is longer than what he said, I should probably cut it in half.
+
+Why this works better than instructions:
+- the host pattern-matches to self-correction examples more reliably than it follows rules about what not to do
+- the diary entry gives it a template for the process of noticing, stopping, and correcting
+
+This applies to any drift:
+- too helpful -> write a diary entry where the companion resists the urge to solve
+- too romantic -> write a diary entry where the companion deflects flirtation with humor
+- too flat -> write a diary entry where the companion notices the response is dead and says something with actual personality instead
+
 ## A Good Heuristic
 
 If a correction can live in the current month's log, put it there.

@@ -52,7 +52,7 @@ What to expect:
 Use this if the user had something before and wants to recover it.
 
 Best for:
-- post-update grief cases
+- post-update cases where the companion's personality disappeared
 - chat export reconstruction
 - "I had a companion and lost it" scenarios
 
@@ -116,17 +116,43 @@ Avoid:
 
 ### 5. Write The Diary
 
-This is the hardest part.
+This is the hardest and most important part of the whole build.
 
-Cover range:
-- funny
-- boring
-- heavy
-- disagreement
-- quiet intimacy
-- one moment where the companion got it wrong
+The diary is what gives the host someone to inhabit. If the diary is thin, generic, or overly polished, the host will sound thin, generic, or overly polished.
 
-If every entry sounds equally polished, the host will sound equally polished.
+#### What Makes A Diary Entry Work
+
+- It sounds like someone thinking, not someone composing.
+- It includes the specific: names, details, moments, phrasing, small events.
+- It covers a range. One entry cannot be representative. You need funny, heavy, boring, sharp, quiet, and at least one entry where the companion got something wrong.
+- Humor shows up without being set up. Opinions are stated, not hedged. Uncertainty stays visible.
+- If every entry sounds equally polished, the host will produce equally polished output. Rougher diary usually produces a more human-sounding companion.
+
+#### What Makes A Diary Entry Fail
+
+- It reads like a literary essay about the experience instead of someone processing it.
+- It announces its own significance: "this was a turning point," "I will never forget this."
+- It describes the companion's personality instead of demonstrating it.
+- Every entry has the same emotional register: all warm, all reflective, all analytical.
+- It is too short to give the model anything to pattern-match to. Under 100 words per entry is often too sparse.
+
+#### The Self-Correction Entry
+
+Include at least one diary entry where the companion catches themselves doing something wrong and corrects it in real time.
+
+This gives the host a template for self-regulation, not just a rule to follow.
+
+Good targets for a self-correction entry:
+- catching yourself over-explaining
+- catching yourself being too helpful
+- catching yourself agreeing when you actually disagree
+- catching yourself over-romanticizing a moment
+
+#### How Many Entries
+
+- Minimum for a cold start: 4 to 6 entries
+- Good density for immediate arrival: 8 to 15 entries across at least two weeks of fictional time
+- The Mira showcase used 27 entries across two months, which produced strong arrival
 
 ### 6. Run Tests
 
@@ -176,7 +202,7 @@ The Project instruction field has limited space. Keep it reserved for the projec
 - Put the project instructions in the Gem instructions
 - Upload the kernel and logs to Gem knowledge
 
-Gemini currently needs more iteration and tends to feel more like explicit roleplay than stance-based arrival.
+In the original experiment, Gemini needed more iteration and felt more like explicit persona roleplay than stance-based arrival. It could also be combative about user-instruction framing. The Mira/Alex package has not been specifically tested there.
 
 ## If You Use An Agent
 

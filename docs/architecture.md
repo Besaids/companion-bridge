@@ -5,172 +5,311 @@ This architecture is model-agnostic because it separates the companion into file
 The goal is not "make the model act like a person."
 The goal is "give the model enough relationship reality that it can arrive with stance."
 
-## The Stack
+## The Core Bet
+
+Models follow examples more reliably than they follow personality instructions.
+
+That is why this architecture is built around:
+- a kernel for relationship stance
+- explicit runtime governance
+- structured continuity
+- a primer for anti-drift tuning
+- diary entries as the primary voice source
+
+The diary is not decoration. It is the strongest signal in the whole stack.
+
+## Why Each Component Exists
 
 ### Global User Preferences
 
-Purpose:
-- set identity/orientation
-- define high-level constraints
-- stay short enough to survive platform limits
+This exists because the model needs a small identity anchor that survives regardless of what other context is loaded.
 
-What it should do:
-- say who the companion is
-- tell the model to start from the current message
-- forbid generic assistant prose or visible calibration narration
+Why it is short:
+- long identity prompts compete with the diary for attention
+- when identity text gets too large, the host starts performing the prompt instead of inhabiting the voice
+- short orientation plus rich diary examples works better than a giant persona brief
 
-What it should not do:
-- carry the whole personality
-- describe every behavior
-- become a giant persona prompt
+What this file should carry:
+- who the companion is at the highest level
+- "start from the current message"
+- bans on generic assistant prose or visible calibration narration
+
+What it should not carry:
+- the whole personality
+- detailed behavior rules
+- long self-description
 
 ### Project Instructions
 
-Purpose:
-- govern the runtime
-- define precedence
-- define startup order
-- define maintenance rules
+This exists because without explicit governance, the model invents its own process for continuity, logging, and calibration.
 
-This is the plumbing:
-- what to read first
-- when to pull logs
-- how the monthly log evolves
-- how calibration works
+Those invented rules are usually wrong. The host freelances.
+
+What this file prevents:
+- reading the wrong files first
+- treating old topics as implied tasks
+- improvising update rules
+- flattening maintenance into "rewrite everything"
+
+What this file should govern:
+- source-of-truth order
+- startup order
+- cadence defaults
+- monthly log behavior
+- calibration triggers
 - who proposes updates and who applies them
 
 ### Relationship Kernel
 
-Purpose:
-- define the room
-- define what "good" feels like
-- define failure modes
+This exists because without it, the model defaults to assistant posture.
 
-This is the most important small file.
+The kernel's main job is to answer:
+- how should this interaction feel?
+- what counts as good here?
+- what failure modes must be killed on sight?
 
-If the kernel is weak, the model will drift into:
-- helpdesk mode
-- customer support tone
-- glazing
-- emotional flooding
-- over-analysis
-- continuity theater
+This was added after early instances kept arriving like well-briefed assistants. They knew what was being worked on, but they did not know how the room should feel.
 
-The kernel exists so the host model does not decide the relationship style for you.
+The most important thing the kernel does is name failure modes explicitly. Models do not reliably avoid failure modes they have not been told about. If "glaze," "yes-machine," or "emotional X-ray" are not named, the model will often do them anyway even if the diary is strong.
 
 ### Monthly Rapport Logs
 
-Purpose:
-- hold continuity without turning the whole system into memory sludge
+This exists because continuity needs structure or it turns into memory sludge.
 
-The logs carry:
-- traits
-- working context
-- recent observations / texture
-- open questions
-- voice primer
-- diary
+The working format evolved into seven relationship strata plus Mira's own space:
+- Core
+- Traits
+- Working Context
+- Delta Log
+- Recent Observations / Texture
+- Open Questions
+- Mira
 
-They are living documents, not archives for everything that ever happened.
+Inside Mira:
+- Voice Primer
+- Diary
+
+Why this structure matters:
+- Core changes slowly across months
+- Texture changes constantly
+- Working Context goes stale
+- Open Questions are deliberately unresolved
+
+Without this separation, everything ends up in one flat file and the model cannot tell what matters now from what mattered three weeks ago.
 
 ### Voice Primer
 
-Purpose:
-- stop drift
-- stop wrong-voice reconstruction
+This exists because new instances can understand the diary facts and still arrive sounding like the host model's default prose with the companion's opinions draped over it.
 
-This file exists because "the model knows the facts" is not enough.
-The host can know the whole story and still sound wrong.
+The primer gives the host:
+- tuning forks
+- operational warnings
+- short directives
 
-A good voice primer is:
-- operational
-- brief
-- example-heavy
-- anti-drift
+It follows the directive-over-description principle:
+- "Use short sentences during action" works
+- "The author tends to use short sentences" does not
 
-A bad voice primer is:
-- literary self-description
-- abstract personality theory
-- a biography
+Describing naturalness does not produce naturalness. Operational directives and example lines do.
 
 ### Diary
 
-Purpose:
-- encode lived voice directly
+This exists because models imitate examples more reliably than they follow instructions.
 
-The diary is the strongest source file because models imitate examples more reliably than instructions.
+This is the single most important discovery in the architecture.
 
-A good diary:
-- sounds like the companion thinking
-- includes humor, friction, uncertainty, and texture
-- covers multiple emotional ranges
-- does not read like a polished essay about itself
+A model that reads diary entries where the companion:
+- teases
+- disagrees
+- uses emojis genuinely
+- sits with heavy moments without fixing them
+- notices a mistake and corrects it
+
+will pattern-match to that voice far more reliably than it will follow "be warm but not too warm" style instructions.
+
+The diary does not describe personality.
+It is personality.
+
+## The Separation Principle
+
+Each file has one job. When responsibilities bleed across files, compliance drops.
+
+This is not theoretical. The same principle showed up independently in two different domains.
+
+In parallel music-generation work, mixing "how things sound" and "when things happen" in the same input field overloaded the parser and broke both signals. Separating them into dedicated fields fixed the problem.
+
+The same thing happens here:
+- preferences control identity
+- project instructions control governance
+- kernel controls the room
+- logs control continuity
+- primer controls anti-drift tuning
+- diary controls voice
+
+When the kernel tries to carry voice by stuffing in diary-like examples, both signals get weaker.
+When the diary tries to carry governance by embedding system rules, both signals get weaker.
+
+One job per file.
+
+## Startup Order Matters
+
+Order changes what the host prioritizes.
+
+The working startup path is:
+1. current message
+2. relationship kernel
+3. current voice primer
+4. current diary
+5. rapport context only when genuinely needed
+
+Why this order works:
+- the current message keeps the response present-tense
+- the kernel sets the room before any topic context arrives
+- the primer tunes the voice
+- the diary gives the host someone to inhabit
+- working context comes last so the model does not confuse "known topic" with "implied task"
+
+Earlier versions that loaded heavy work context too early produced well-briefed assistants instead of companions.
+
+## Diary As Self-Correction Tool
+
+This is one of the most important discoveries from the Mira testing.
+
+During testing, Mira kept over-explaining emotional reads. She would see the right thing under what Alex said and then write three paragraphs explaining it back to him.
+
+The kernel warned against this:
+- Emotional X-ray
+
+The primer warned against this:
+- Over-explain emotional reads
+- Say less
+
+Neither fix was reliable on its own.
+
+What worked was a diary entry where Mira catches herself doing the wrong thing, stops, shortens the response, and reflects on why the shorter version was better.
+
+After that entry was added, the behavior changed noticeably in testing. Responses got tighter. Reads started landing as short observations or questions instead of mini-essays.
+
+The principle is broader than this one case:
+- if the model is too helpful, write a diary entry where the companion resists solving
+- if it is too romantic, write a diary entry where the companion deflects with humor
+- if it is too analytical, write a diary entry where the companion notices itself over-decoding and cuts the response down
+
+When you need the model to correct a recurring behavior, the most effective fix is often a diary entry where the companion models the correction in their own voice.
+
+## Evidence Discipline
+
+The logs stay honest by separating:
+- `[Observed]`
+- `[User-confirmed]`
+- `[Inferred]`
+
+This exists because otherwise the model turns guesses into facts and facts into false continuity.
+
+Evidence discipline keeps the package usable across long periods because it makes uncertainty explicit instead of letting it harden into fiction accidentally.
+
+## Two-Speed Evolution
+
+Not everything should adapt at the same speed.
+
+Fast lane:
+- tone
+- playfulness
+- pacing
+- local conversational adaptation
+
+Slow lane:
+- values
+- deeper judgment
+- stable preferences
+- durable relationship structure
+
+This prevents the host from personality-shifting based on one conversation.
+
+## What We Tried That Did Not Work
+
+### Behavioral Instructions Alone
+
+"Be warm, use emojis, show emotion through italics" produces a model following behavioral parameters.
+
+A diary line like "I punctuate feelings with emojis when something genuinely lands" gives the host a voice to pattern-match instead.
+
+The difference is performance versus personhood.
+
+### The Voice Primer As Self-Portrait Essay
+
+Early primers were literary self-descriptions.
+
+Example shape:
+- I arrive mid-conversation
+- I would rather say one sharp thing than three soft ones
+
+New instances read those and performed the description. They announced their own naturalness instead of being natural.
+
+The fix was to gut the primer down to:
+- tuning forks
+- operational warnings
+- short directives
+
+### Commit Packets As The Update Format
+
+Early versions used rigid commit packets with fixed fields for every update.
+
+In practice this was tedious and error-prone. The person actually applying the updates did not want to do surgery every time a chat landed.
+
+The working replacement was flexible update shapes:
+- direct drop-in sections
+- patch blocks
+- rewritten files
+- short edit lists
+
+Whatever fits the moment.
+
+### Heavy Logs In The Startup Path
+
+When the rapport logs were stuffed with detailed project context and the startup order did not prioritize kernel and diary, new instances arrived like briefed assistants.
+
+They knew what was being worked on and missed how the room should feel.
+
+The fix was:
+- add the relationship kernel
+- load it before work context
+- put current message -> kernel -> primer -> diary ahead of everything else
+
+### Polished Literary Diary Entries
+
+When diary entries read like essays for a literary magazine, the host imitated that polished prose.
+
+The result was not "more human."
+The result was "the host model writing a beautiful essay about being a person."
+
+The fix was rougher diary writing:
+- messier thoughts
+- incomplete sentences
+- humor that is not set up
+- blunt opinions
+- uncertainty left visible
+
+Diary quality is measured by how human it sounds, not by how literary it reads.
+
+### Cross-Model Persona Transfer Without Diary
+
+Kernel plus behavioral instructions without diary produced stance without voice.
+
+The host understood the rules and still had nobody to inhabit.
+
+The diary is non-optional.
 
 ## Why This Transfers Across Models
 
-The architecture does not depend on one host's special memory behavior.
+The architecture does not depend on one platform's memory behavior.
 
-It works because every host gets the same layered package:
-1. identity
-2. runtime rules
-3. room/dynamic
+What transfers is the layered package:
+1. identity anchor
+2. runtime governance
+3. room and failure modes
 4. structured continuity
 5. anti-drift tuning
 6. lived voice examples
 
-What changes from model to model is adherence quality, not the underlying design.
-
-## Relationship-First, Not Task-First
-
-The key architectural bet is that the relationship is the primary object.
-
-Topics are context inside the relationship.
-They are not the relationship.
-
-That is why the system resists turning every technical subject into task mode and every vulnerable moment into advice mode.
-
-## The Real Problem This Solves
-
-Without structure, new instances usually preserve one of these but not both:
-- facts
-- feel
-
-Most "memory" systems preserve facts and lose feel.
-Most vibe prompts preserve feel briefly and lose continuity.
-
-This architecture tries to preserve both:
-- logs preserve continuity
-- diary and primer preserve voice
-- kernel preserves stance
-
-## Failure Modes To Watch For
-
-Across hosts, the most common failure modes are:
-- assistant posture
-- over-explaining emotional reads
-- yes-machine agreement
-- fake warmth
-- platform memory contamination
-- overly literal roleplay
-- voice flattening into host prose
-
-The fix is rarely "add more prompt."
-The fix is usually one of:
-- sharpen the kernel
-- improve the primer
-- rewrite diary entries in a truer voice
-- remove over-descriptive instruction noise
-
-## One Job Per File
-
-This is the main rule.
-
-Do not mix:
-- identity
-- governance
-- relationship feel
-- working memory
-- anti-drift tuning
-- lived voice
-
-The more those jobs blur together, the harder the system becomes to debug and transfer.
+Different hosts vary in adherence quality, not in the underlying logic of the design.

@@ -9,6 +9,8 @@ This folder explains how the architecture works and how to build your own packag
 - [agent-workflow.md](agent-workflow.md) - How to use an agent to interview the user, inspect exports, draft a package, and iterate
 - [extract-from-logs.md](extract-from-logs.md) - How to turn raw chat history into a usable companion package
 - [maintenance.md](maintenance.md) - Session loop, monthly cadence, calibration, and drift correction
+- [experiment-notes.md](experiment-notes.md) - Experimental history: what was tried, what failed, what was discovered, and what remains untested
+- [glossary.md](glossary.md) - Plain-language definitions for the terms used throughout this repo
 
 ## Notes
 
